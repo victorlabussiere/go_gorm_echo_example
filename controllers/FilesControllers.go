@@ -68,6 +68,38 @@ func RetrieveFile(c echo.Context) error {
 	})
 }
 
+func RetrieveAllFiles(c echo.Context) error {
+	files, err := services.GetAllFilesInfos(c.Request().Context())
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, echo.Map{
+			"error":   true,
+			"message": "Não foi possível concluir a operação",
+			"data":    err.Error(),
+		})
+	}
+
+	type RetrieveFileDto struct {
+		ID   uint   `json:"id"`
+		Name string `json:"name"`
+	}
+
+	var data []RetrieveFileDto
+
+	for _, file := range files {
+		data = append(data, RetrieveFileDto{
+			ID:   file.ID,
+			Name: file.Name,
+		})
+	}
+
+	return c.JSON(http.StatusOK, echo.Map{
+		"alert":   "Utilize o ID para realizar uma consulta dedicada.",
+		"message": "Operação realizada com sucesso.",
+		"error":   false,
+		"data":    data,
+	})
+}
+
 func RetrieveFileContent(c echo.Context) error {
 	id := c.Param("id")
 

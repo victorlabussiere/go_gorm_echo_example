@@ -37,3 +37,9 @@ func GetFileById(c context.Context, id string) (*models.File, error) {
 
 	return &file, nil
 }
+
+func GetAllFilesInfos(c context.Context) ([]*models.File, error) {
+	var files []*models.File
+	result := initializer.DB.WithContext(c).Find(&files)
+	return files, result.Error
+}
