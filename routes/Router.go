@@ -7,4 +7,5 @@ func Router(app *echo.Echo) {
 	RouteUsers(app)
 	RouteCategories(app)
 	RouteProducts(app)
+	RouteFiles(app)
 }

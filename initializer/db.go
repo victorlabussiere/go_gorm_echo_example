@@ -23,5 +23,5 @@ func ConnectToDatabase() {
 }
 
 func SyncDb() {
-	DB.AutoMigrate(&models.User{}, &models.Category{}, &models.Product{})
+	DB.AutoMigrate(&models.User{}, &models.Category{}, &models.Product{}, &models.File{})
 }
