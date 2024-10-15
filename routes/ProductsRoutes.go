@@ -10,4 +10,6 @@ func RouteProducts(app *echo.Echo) {
 	app.GET("/products", controllers.GetAllProducts)
 	app.GET("/products/:id", controllers.GetProductById)
 	app.GET("/products/category/:id", controllers.GetProductByCategoryId)
+	app.PATCH("/products/:id", controllers.UpdateProductById)
+	app.DELETE("/products/:id", controllers.DeleteProductById)
 }
